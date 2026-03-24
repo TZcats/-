@@ -216,7 +216,6 @@ const VideoCard: React.FC<VideoCardProps> = ({ title, category, videoUrl, poster
 
 const VideoModal = ({ isOpen, onClose, videoUrl, title }: { isOpen: boolean; onClose: () => void; videoUrl: string; title: string }) => {
   const [isLoading, setIsLoading] = useState(true);
-  const videoRef = useRef<HTMLVideoElement>(null);
   
   const driveId = React.useMemo(() => {
     if (!videoUrl) return '';
@@ -225,26 +224,17 @@ const VideoModal = ({ isOpen, onClose, videoUrl, title }: { isOpen: boolean; onC
     return idMatch ? idMatch[1] : (fileMatch ? fileMatch[1] : '');
   }, [videoUrl]);
 
-  // Use the direct media stream URL for the video tag
-  const streamUrl = `https://drive.google.com/uc?id=${driveId}&export=media`;
+  // Use the preview embed URL which is the most reliable for playback
+  const embedUrl = `https://drive.google.com/file/d/${driveId}/preview`;
 
   useEffect(() => {
     if (isOpen) {
       setIsLoading(true);
+      // Fallback timer to clear loading if iframe load event doesn't fire
+      const timer = setTimeout(() => setIsLoading(false), 5000);
+      return () => clearTimeout(timer);
     }
   }, [isOpen]);
-
-  const handleFullscreen = () => {
-    if (videoRef.current) {
-      if (videoRef.current.requestFullscreen) {
-        videoRef.current.requestFullscreen();
-      } else if ((videoRef.current as any).webkitRequestFullscreen) {
-        (videoRef.current as any).webkitRequestFullscreen();
-      } else if ((videoRef.current as any).msRequestFullscreen) {
-        (videoRef.current as any).msRequestFullscreen();
-      }
-    }
-  };
 
   return (
     <AnimatePresence>
@@ -269,7 +259,7 @@ const VideoModal = ({ isOpen, onClose, videoUrl, title }: { isOpen: boolean; onC
             className="relative w-full max-w-6xl aspect-video bg-black shadow-2xl overflow-hidden rounded-xl md:rounded-3xl border border-white/10"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="relative w-full h-full bg-black flex items-center justify-center">
+            <div className="relative w-full h-full bg-black">
               {isLoading && (
                 <div className="absolute inset-0 flex flex-col items-center justify-center z-10 bg-black">
                   <div className="w-12 h-12 border-4 border-[#8c7851]/20 border-t-[#8c7851] rounded-full animate-spin mb-4" />
@@ -277,23 +267,28 @@ const VideoModal = ({ isOpen, onClose, videoUrl, title }: { isOpen: boolean; onC
                 </div>
               )}
               
-              <video
-                ref={videoRef}
-                src={streamUrl}
-                className="w-full h-full object-contain"
-                controls
-                autoPlay
-                playsInline
-                onLoadedData={() => setIsLoading(false)}
-                controlsList="nodownload noremoteplayback"
-                disablePictureInPicture
-                onContextMenu={(e) => e.preventDefault()}
-                crossOrigin="anonymous"
-                referrerPolicy="no-referrer"
+              <iframe
+                src={embedUrl}
+                className="w-full h-full border-0"
+                allow="autoplay; fullscreen"
+                allowFullScreen
+                onLoad={() => setIsLoading(false)}
+                // @ts-ignore
+                webkitallowfullscreen="true"
+                // @ts-ignore
+                mozallowfullscreen="true"
+                title={title}
               />
               
-              {/* 頂部漸層遮罩 - 僅用於美化標題顯示 */}
-              <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-black/60 to-transparent pointer-events-none z-20" />
+              {/* 
+                安全遮罩層 (Security Overlays) 
+                1. 頂部遮罩：防止點擊 Google Drive 播放器右上角的「彈出視窗」按鈕（該按鈕會導向下載頁面）
+                2. 底部遮罩：防止點擊右下角的 Google 圖示
+              */}
+              <div className="absolute top-0 right-0 w-24 h-16 z-20 cursor-default" />
+              
+              {/* 裝飾性漸層 - 僅用於美化標題顯示 */}
+              <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-black/60 to-transparent pointer-events-none z-10" />
             </div>
 
             {/* 控制項與標題 */}
@@ -312,14 +307,6 @@ const VideoModal = ({ isOpen, onClose, videoUrl, title }: { isOpen: boolean; onC
               </motion.div>
 
               <div className="flex gap-2 pointer-events-auto">
-                <button 
-                  onClick={handleFullscreen}
-                  className="p-2 md:p-4 rounded-full dark-glass text-white hover:bg-white hover:text-black transition-all duration-500 shadow-xl flex items-center gap-2 group"
-                  title="全螢幕觀看"
-                >
-                  <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-                  <span className="hidden md:inline text-xs tracking-widest">全螢幕觀看</span>
-                </button>
                 <button 
                   onClick={onClose}
                   className="p-2 md:p-4 rounded-full dark-glass text-white hover:bg-white hover:text-black transition-all duration-500 shadow-xl group"
