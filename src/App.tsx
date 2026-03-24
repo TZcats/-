@@ -101,7 +101,7 @@ interface VideoCardProps {
 const safeEncodeUrl = (url: string) => {
   if (!url) return '';
   if (url.startsWith('http')) {
-    // Convert Google Drive links to a more reliable streaming format
+    // Convert Google Drive links to a more reliable format
     if (url.includes('drive.google.com')) {
       let id = '';
       const idMatch = url.match(/id=([^&]+)/);
@@ -111,8 +111,14 @@ const safeEncodeUrl = (url: string) => {
       else if (fileMatch) id = fileMatch[1];
 
       if (id) {
+        // If it's a thumbnail request (contains thumbnail in URL)
+        if (url.includes('thumbnail')) {
+          return `https://lh3.googleusercontent.com/d/${id}=w1000`;
+        }
         // Use the most direct streaming URL possible
-        return `https://drive.google.com/uc?id=${id}&export=download`;
+        // Note: Safari on iOS requires 206 Partial Content which Drive uc?id= doesn't always provide perfectly.
+        // We add &export=media which can sometimes help with streaming headers.
+        return `https://drive.google.com/uc?id=${id}&export=media`;
       }
     }
     return url;
@@ -122,14 +128,18 @@ const safeEncodeUrl = (url: string) => {
 
 const VideoCard: React.FC<VideoCardProps> = ({ title, category, videoUrl, posterUrl, enTitle, onClick }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
+  const [videoLoaded, setVideoLoaded] = useState(false);
 
   const handleMouseEnter = () => {
+    setIsHovered(true);
     if (videoRef.current) {
       videoRef.current.play().catch(() => {});
     }
   };
 
   const handleMouseLeave = () => {
+    setIsHovered(false);
     if (videoRef.current) {
       videoRef.current.pause();
       videoRef.current.currentTime = 0;
@@ -152,31 +162,36 @@ const VideoCard: React.FC<VideoCardProps> = ({ title, category, videoUrl, poster
       {/* Transparent Overlay to prevent direct interaction */}
       <div className="absolute inset-0 z-20" />
       
+      {/* Primary Thumbnail - Much more reliable than video poster on iOS */}
+      <img 
+        src={safeEncodeUrl(posterUrl)} 
+        alt={title}
+        referrerPolicy="no-referrer"
+        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${isHovered && videoLoaded ? 'opacity-0' : 'opacity-100'}`}
+      />
+
+      {/* Video Preview - Only active on hover (desktop) */}
       <motion.video 
         ref={videoRef}
         src={safeEncodeUrl(videoUrl)} 
-        poster={posterUrl}
         muted
         playsInline
         loop
-        preload="metadata"
+        preload="none"
+        onLoadedData={() => setVideoLoaded(true)}
         crossOrigin="anonymous"
         referrerPolicy="no-referrer"
         controlsList="nodownload noremoteplayback"
         disablePictureInPicture
-        initial={{ opacity: 1 }}
-        whileInView={{ opacity: 0.95 }}
-        viewport={{ once: true }}
-        transition={{ delay: 0.8, duration: 1.2 }}
-        className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 pointer-events-none"
+        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${isHovered && videoLoaded ? 'opacity-100' : 'opacity-0'} pointer-events-none`}
       />
       
-      {/* Refined Bottom Gradient - limited to bottom 1/4 to 1/3 for text legibility */}
+      {/* Refined Bottom Gradient */}
       <motion.div 
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        transition={{ delay: 0.8, duration: 1.2 }}
+        transition={{ delay: 0.3, duration: 0.8 }}
         className="absolute inset-0 flex flex-col justify-end p-4 md:p-6 z-30 bg-gradient-to-t from-black/80 via-black/10 to-transparent"
       >
         <div className="mb-auto flex justify-center items-center h-full opacity-0 group-hover:opacity-100 transition-opacity duration-500">
@@ -200,6 +215,8 @@ const VideoCard: React.FC<VideoCardProps> = ({ title, category, videoUrl, poster
 };
 
 const VideoModal = ({ isOpen, onClose, videoUrl, title }: { isOpen: boolean; onClose: () => void; videoUrl: string; title: string }) => {
+  const [isLoading, setIsLoading] = useState(true);
+  
   const driveId = React.useMemo(() => {
     if (!videoUrl) return '';
     const idMatch = videoUrl.match(/id=([^&]+)/);
@@ -208,6 +225,15 @@ const VideoModal = ({ isOpen, onClose, videoUrl, title }: { isOpen: boolean; onC
   }, [videoUrl]);
 
   const embedUrl = `https://drive.google.com/file/d/${driveId}/preview`;
+
+  useEffect(() => {
+    if (isOpen) {
+      setIsLoading(true);
+      // Reset loading state after a timeout as fallback
+      const timer = setTimeout(() => setIsLoading(false), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [isOpen]);
 
   return (
     <AnimatePresence>
@@ -230,11 +256,19 @@ const VideoModal = ({ isOpen, onClose, videoUrl, title }: { isOpen: boolean; onC
             onClick={(e) => e.stopPropagation()}
           >
             <div className="relative w-full h-full bg-black">
+              {isLoading && (
+                <div className="absolute inset-0 flex flex-col items-center justify-center z-10 bg-black">
+                  <div className="w-12 h-12 border-4 border-[#8c7851]/20 border-t-[#8c7851] rounded-full animate-spin mb-4" />
+                  <p className="text-zinc-500 text-xs tracking-widest animate-pulse">載入作品中 Loading...</p>
+                </div>
+              )}
+              
               <iframe
                 src={embedUrl}
                 className="w-full h-full border-0"
                 allow="autoplay; fullscreen"
                 allowFullScreen
+                onLoad={() => setIsLoading(false)}
                 // @ts-ignore
                 webkitallowfullscreen="true"
                 // @ts-ignore
@@ -270,7 +304,7 @@ const VideoModal = ({ isOpen, onClose, videoUrl, title }: { isOpen: boolean; onC
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="p-2 md:p-4 rounded-full dark-glass text-white hover:bg-white hover:text-black transition-all duration-500 shadow-xl flex items-center gap-2 group"
-                  title="在新視窗開啟 (解決全螢幕問題)"
+                  title="在新視窗開啟 (解決 iPhone/Safari 播放問題)"
                 >
                   <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
                   <span className="hidden md:inline text-xs tracking-widest">全螢幕觀看</span>
