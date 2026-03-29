@@ -448,14 +448,14 @@ const Showcase = () => {
       title: "高級機械表：萬年曆", 
       enTitle: "Luxury Watch: Perpetual Calendar",
       category: "精品工藝 / Luxury", 
-      image: "https://drive.google.com/thumbnail?id=1pGKm0uhRSPEtL_65fDDcM8o1oqid_N3P&sz=w1000",
+      image: "https://drive.google.com/thumbnail?id=1B6ehQbBWlIB3NQopPvD2jCHWCReizkZO&sz=w1000",
       video: "https://drive.google.com/uc?id=1pGKm0uhRSPEtL_65fDDcM8o1oqid_N3P"
     },
     { 
       title: "性能覺醒：經典紀元", 
       enTitle: "Performance: Classic Era",
       category: "汽車工業 / Automotive", 
-      image: "https://drive.google.com/thumbnail?id=1SyYLkfcYIzlwq4TBDBneQHSM2ips0Gbl&sz=w1000",
+      image: "https://drive.google.com/thumbnail?id=1QNVdvhb_8zsAoYhwddykl1jGMFl6ZZ04&sz=w1000",
       video: "https://drive.google.com/uc?id=1SyYLkfcYIzlwq4TBDBneQHSM2ips0Gbl"
     },
     { 
@@ -494,18 +494,18 @@ const Showcase = () => {
       video: "https://drive.google.com/uc?id=1PXmTHDlpGXaZ5qnZVh06QyUeNuRX1x4l"
     },
     { 
-      title: "QBH：絲滑護髮", 
-      enTitle: "QBH: Silken Haircare",
-      category: "美妝保養 / Beauty", 
-      image: "https://drive.google.com/thumbnail?id=1GB1-7so8LKbi8vP3eNsrFtJ_sPQPFgkd&sz=w1000",
-      video: "https://drive.google.com/uc?id=1GB1-7so8LKbi8vP3eNsrFtJ_sPQPFgkd"
-    },
-    { 
       title: "日系化妝品：極致美學", 
       enTitle: "Japanese Beauty: Aesthetics",
       category: "美妝保養 / Beauty", 
       image: "https://drive.google.com/thumbnail?id=1711CFfhl0MrFWWnVCb_0oyauQHKFcjX0&sz=w1000",
       video: "https://drive.google.com/uc?id=1711CFfhl0MrFWWnVCb_0oyauQHKFcjX0"
+    },
+    { 
+      title: "QBH：絲滑護髮", 
+      enTitle: "QBH: Silken Haircare",
+      category: "美妝保養 / Beauty", 
+      image: "https://drive.google.com/thumbnail?id=1oMQyTparJQzlPqUAVEjWBsYTXa765gSs&sz=w1000",
+      video: "https://drive.google.com/uc?id=1GB1-7so8LKbi8vP3eNsrFtJ_sPQPFgkd"
     },
     { 
       title: "港區之巔：Ark Hills", 
