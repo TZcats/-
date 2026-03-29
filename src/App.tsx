@@ -410,18 +410,18 @@ const Showcase = () => {
       video: "https://drive.google.com/uc?id=1ouGVLN3gzde5W1MUWo00mVRSx8vM3r4V"
     },
     { 
+      title: "日系化妝品：絲滑光影", 
+      enTitle: "Japanese Beauty: Silken Radiance",
+      category: "美妝保養 / Beauty", 
+      image: "https://drive.google.com/thumbnail?id=1EJqDFbLnCe4Ry2f46hiP6f3g1JrsQwte&sz=w1000",
+      video: "https://drive.google.com/uc?id=1R774AgqnYcW73XUHrbcT-XX4amEPM7Y4"
+    },
+    { 
       title: "幻夢之境：日劇片頭", 
       enTitle: "The Ethereal Realm: Opening",
       category: "AI 概念 / AI Concept", 
       image: "https://drive.google.com/thumbnail?id=1W3iOgjEXzDMd2mZIqHZ5r-0K53uW7Gfe&sz=w1000",
       video: "https://drive.google.com/uc?id=1W3iOgjEXzDMd2mZIqHZ5r-0K53uW7Gfe"
-    },
-    { 
-      title: "日系化妝品：極致美學", 
-      enTitle: "Japanese Beauty: Aesthetics",
-      category: "美妝保養 / Beauty", 
-      image: "https://drive.google.com/thumbnail?id=1711CFfhl0MrFWWnVCb_0oyauQHKFcjX0&sz=w1000",
-      video: "https://drive.google.com/uc?id=1711CFfhl0MrFWWnVCb_0oyauQHKFcjX0"
     },
     { 
       title: "QBH 玻尿酸：自然植萃", 
@@ -490,7 +490,7 @@ const Showcase = () => {
       title: "寶詩特：柔韌美學", 
       enTitle: "Postel: Resilient Beauty",
       category: "美妝保養 / Beauty", 
-      image: "https://drive.google.com/thumbnail?id=1PXmTHDlpGXaZ5qnZVh06QyUeNuRX1x4l&sz=w1000",
+      image: "https://drive.google.com/thumbnail?id=1ABjtQm7h8Zq-T0M6L8d712T52WY5qTqO&sz=w1000",
       video: "https://drive.google.com/uc?id=1PXmTHDlpGXaZ5qnZVh06QyUeNuRX1x4l"
     },
     { 
@@ -501,11 +501,11 @@ const Showcase = () => {
       video: "https://drive.google.com/uc?id=1GB1-7so8LKbi8vP3eNsrFtJ_sPQPFgkd"
     },
     { 
-      title: "日系化妝品：絲滑光影", 
-      enTitle: "Japanese Beauty: Silken Radiance",
+      title: "日系化妝品：極致美學", 
+      enTitle: "Japanese Beauty: Aesthetics",
       category: "美妝保養 / Beauty", 
-      image: "https://drive.google.com/thumbnail?id=1R774AgqnYcW73XUHrbcT-XX4amEPM7Y4&sz=w1000",
-      video: "https://drive.google.com/uc?id=1R774AgqnYcW73XUHrbcT-XX4amEPM7Y4"
+      image: "https://drive.google.com/thumbnail?id=1711CFfhl0MrFWWnVCb_0oyauQHKFcjX0&sz=w1000",
+      video: "https://drive.google.com/uc?id=1711CFfhl0MrFWWnVCb_0oyauQHKFcjX0"
     },
     { 
       title: "港區之巔：Ark Hills", 
