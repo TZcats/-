@@ -3,22 +3,65 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Play, Sparkles, Film, Zap, ArrowRight, Mail, Phone, Instagram, Twitter, X, MessageSquare, Camera, Palette, Video } from 'lucide-react';
 
 const Navbar = () => (
-  <nav className="fixed top-0 left-0 right-0 z-50 px-4 md:px-6 py-4 flex justify-between items-center dark-glass border-b border-white/5">
-    <div className="flex flex-col">
-      <span className="text-lg md:text-xl font-sans tracking-widest font-bold leading-tight">棠哲影像工作室</span>
-      <span className="text-[8px] md:text-[9px] tracking-[0.25em] font-sans font-medium opacity-50 uppercase">Tong Zhe Film Studio</span>
+  <nav className="fixed top-0 left-0 right-0 z-50 px-4 md:px-6 py-3 md:py-5 dark-glass border-b border-white/5">
+    <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-1 md:gap-0">
+      {/* Top Row on Mobile: Logo + Inquiry Button */}
+      <div className="flex justify-between items-center w-full md:w-auto">
+        <div className="flex flex-col">
+          <div className="flex items-baseline gap-1">
+            <span className="text-sm md:text-base lg:text-lg font-sans tracking-widest font-bold leading-tight text-white">棠哲攝影</span>
+            <span className="text-[8px] md:text-[10px] lg:text-xs font-sans tracking-widest font-normal opacity-60 leading-tight text-white/80">｜AI 視覺藝術與商業攝影</span>
+          </div>
+          <span className="text-[5px] md:text-[7px] tracking-[0.2em] font-sans font-medium opacity-40 uppercase text-white/50">TongZhe Photographer AI Visual</span>
+        </div>
+
+        {/* Mobile Inquiry Button - Visible only on mobile */}
+        <button 
+          onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+          className="md:hidden px-3 py-1.5 rounded-full border border-white/20 text-[8px] tracking-widest hover:bg-[#8c7851] hover:text-white transition-all duration-300 shadow-lg"
+        >
+          <span className="font-bold">立即諮詢</span>
+        </button>
+      </div>
+
+      {/* Mobile Links - Visible only on mobile, placed below brand */}
+      <div className="flex md:hidden gap-4 mt-1 items-center">
+        <button 
+          onClick={() => document.getElementById('showcase')?.scrollIntoView({ behavior: 'smooth' })} 
+          className="text-[7px] tracking-[0.15em] text-white/30 uppercase hover:text-[#8c7851] transition-colors"
+        >
+          作品 Showcase
+        </button>
+        <button 
+          onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })} 
+          className="text-[7px] tracking-[0.15em] text-white/30 uppercase hover:text-[#8c7851] transition-colors"
+        >
+          服務 Services
+        </button>
+        <button 
+          onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })} 
+          className="text-[7px] tracking-[0.15em] text-white/30 uppercase hover:text-[#8c7851] transition-colors"
+        >
+          聯絡 Contact
+        </button>
+      </div>
+
+      {/* Desktop Links & Inquiry Button Section */}
+      <div className="hidden md:flex items-center gap-8">
+        <div className="flex gap-8 text-sm tracking-widest font-medium text-white/70">
+          <button onClick={() => document.getElementById('showcase')?.scrollIntoView({ behavior: 'smooth' })} className="hover:text-white transition-colors text-xs whitespace-nowrap">作品展示 <span className="text-[9px] opacity-50 ml-1">Showcase</span></button>
+          <button onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })} className="hover:text-white transition-colors text-xs whitespace-nowrap">專業服務 <span className="text-[9px] opacity-50 ml-1">Services</span></button>
+          <button onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })} className="hover:text-white transition-colors text-xs whitespace-nowrap">聯絡我們 <span className="text-[9px] opacity-50 ml-1">Contact</span></button>
+        </div>
+        
+        <button 
+          onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+          className="px-5 py-2.5 rounded-full border border-white/20 text-[10px] md:text-xs tracking-widest hover:bg-[#8c7851] hover:text-white hover:border-[#8c7851] transition-all duration-300 relative overflow-hidden group shadow-lg"
+        >
+          <span className="relative z-10 font-bold">立即諮詢 <span className="hidden sm:inline text-[9px] ml-1 font-medium opacity-70">Inquiry</span></span>
+        </button>
+      </div>
     </div>
-    <div className="hidden md:flex gap-8 text-sm tracking-widest font-medium text-white/70">
-      <button onClick={() => document.getElementById('showcase')?.scrollIntoView({ behavior: 'smooth' })} className="hover:text-white transition-colors text-xs lg:text-sm">作品展示 <span className="text-[10px] opacity-50 ml-1">Showcase</span></button>
-      <button onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })} className="hover:text-white transition-colors text-xs lg:text-sm">專業服務 <span className="text-[10px] opacity-50 ml-1">Services</span></button>
-      <button onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })} className="hover:text-white transition-colors text-xs lg:text-sm">聯絡我們 <span className="text-[10px] opacity-50 ml-1">Contact</span></button>
-    </div>
-    <button 
-      onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-      className="px-4 md:px-5 py-2 rounded-full border border-white/40 text-[10px] md:text-xs tracking-widest hover:bg-[#8c7851] hover:text-white hover:border-[#8c7851] transition-all duration-300 relative overflow-hidden group"
-    >
-      <span className="relative z-10">立即諮詢 <span className="hidden sm:inline text-[9px] ml-1">Inquiry</span></span>
-    </button>
   </nav>
 );
 
@@ -58,26 +101,25 @@ const Hero = () => (
         <span className="inline-block px-3 py-1 rounded-full border border-white/40 bg-black/40 backdrop-blur-md text-[9px] md:text-[10px] uppercase tracking-[0.3em] mb-6 text-white font-semibold">
           視覺敘事的未來 <span className="hidden sm:inline ml-2">The Future of Visual Storytelling</span>
         </span>
-        <h1 className="text-xl sm:text-3xl md:text-5xl lg:text-6xl font-serif italic mb-8 leading-tight tracking-[0.15em] whitespace-nowrap overflow-hidden text-ellipsis text-white font-bold drop-shadow-2xl">
-          超越現實，探索未知。
-          <div className="text-[8px] sm:text-[10px] md:text-xs lg:text-sm mt-5 opacity-100 font-sans not-italic tracking-[0.5em] uppercase whitespace-nowrap text-white font-medium">BEYOND REALITY, INTO THE UNSEEN</div>
+        <h1 className="text-lg sm:text-2xl md:text-4xl lg:text-5xl font-serif italic mb-4 leading-tight tracking-[0.15em] text-white font-bold drop-shadow-2xl">
+          超越現實 探索未知
+          <div className="text-[7px] sm:text-[9px] md:text-[10px] lg:text-xs mt-3 opacity-100 font-sans not-italic tracking-[0.5em] uppercase text-white font-medium">BEYOND REALITY, INTO THE UNSEEN</div>
         </h1>
-        <p className="text-sm md:text-lg lg:text-xl text-white max-w-2xl mx-auto mb-10 font-medium leading-relaxed tracking-wide px-4 md:px-0 drop-shadow-lg">
-          運用頂尖 AI 技術打造極致細節的電影級影像。<br />
-          在想像力與現實的交界處，為您呈現前所未見的視覺饗宴。
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <div className="text-xs sm:text-base md:text-lg lg:text-xl mb-8 font-sans not-italic tracking-[0.2em] text-white/90 font-medium drop-shadow-lg">
+          AI 視覺藝術與商業攝影：為品牌提供超現實視覺方案
+        </div>
+        <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
           <button 
             onClick={() => document.getElementById('showcase')?.scrollIntoView({ behavior: 'smooth' })}
-            className="group w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-4 bg-white text-[#5d534a] rounded-full font-bold transition-all hover:bg-[#fdfbf7] hover:text-[#8c7851] active:scale-95 shadow-xl border border-white/10"
+            className="group w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3 bg-white text-[#5d534a] rounded-full font-bold transition-all hover:bg-[#fdfbf7] hover:text-[#8c7851] active:scale-95 shadow-xl border border-white/10 text-xs"
           >
-            觀看作品集 <span className="text-xs opacity-60">Showreel</span> <Play size={16} fill="currentColor" />
+            觀看作品集 <span className="text-[10px] opacity-60">Showreel</span> <Play size={14} fill="currentColor" />
           </button>
           <button 
             onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
-            className="w-full sm:w-auto px-8 py-4 rounded-full border border-white/40 bg-white/5 backdrop-blur-md hover:bg-[#8c7851] hover:text-white hover:border-[#8c7851] transition-all duration-300 text-sm text-white font-bold shadow-lg relative overflow-hidden group"
+            className="w-full sm:w-auto px-6 py-3 rounded-full border border-white/40 bg-white/5 backdrop-blur-md hover:bg-[#8c7851] hover:text-white hover:border-[#8c7851] transition-all duration-300 text-xs text-white font-bold shadow-lg relative overflow-hidden group"
           >
-            <span className="relative z-10">專業服務 <span className="text-xs opacity-80 ml-1">Services</span></span>
+            <span className="relative z-10">專業服務 <span className="text-[10px] opacity-80 ml-1">Services</span></span>
           </button>
         </div>
       </motion.div>
@@ -101,6 +143,22 @@ interface VideoCardProps {
 const safeEncodeUrl = (url: string) => {
   if (!url) return '';
   if (url.startsWith('http')) {
+    // Handle YouTube Links
+    if (url.includes('youtube.com') || url.includes('youtu.be')) {
+      let videoId = '';
+      if (url.includes('youtu.be/')) {
+        videoId = url.split('youtu.be/')[1].split(/[?#]/)[0];
+      } else if (url.includes('v=')) {
+        videoId = url.split('v=')[1].split(/[?#]/)[0];
+      } else if (url.includes('embed/')) {
+        videoId = url.split('embed/')[1].split(/[?#]/)[0];
+      }
+      
+      if (videoId) {
+        return `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
+      }
+    }
+
     // Convert Google Drive links to a more reliable format
     if (url.includes('drive.google.com')) {
       let id = '';
@@ -116,8 +174,6 @@ const safeEncodeUrl = (url: string) => {
           return `https://lh3.googleusercontent.com/d/${id}=w1000`;
         }
         // Use the most direct streaming URL possible
-        // Note: Safari on iOS requires 206 Partial Content which Drive uc?id= doesn't always provide perfectly.
-        // We add &export=media which can sometimes help with streaming headers.
         return `https://drive.google.com/uc?id=${id}&export=media`;
       }
     }
@@ -131,7 +187,10 @@ const VideoCard: React.FC<VideoCardProps> = ({ title, category, videoUrl, poster
   const [isHovered, setIsHovered] = useState(false);
   const [videoLoaded, setVideoLoaded] = useState(false);
 
+  const isYouTube = videoUrl.includes('youtube.com') || videoUrl.includes('youtu.be');
+
   const handleMouseEnter = () => {
+    if (isYouTube) return; // YouTube doesn't support direct <video> tag playback
     setIsHovered(true);
     if (videoRef.current) {
       videoRef.current.play().catch(() => {});
@@ -139,6 +198,7 @@ const VideoCard: React.FC<VideoCardProps> = ({ title, category, videoUrl, poster
   };
 
   const handleMouseLeave = () => {
+    if (isYouTube) return;
     setIsHovered(false);
     if (videoRef.current) {
       videoRef.current.pause();
@@ -170,21 +230,23 @@ const VideoCard: React.FC<VideoCardProps> = ({ title, category, videoUrl, poster
         className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${isHovered && videoLoaded ? 'opacity-0' : 'opacity-100'}`}
       />
 
-      {/* Video Preview - Only active on hover (desktop) */}
-      <motion.video 
-        ref={videoRef}
-        src={safeEncodeUrl(videoUrl)} 
-        muted
-        playsInline
-        loop
-        preload="none"
-        onLoadedData={() => setVideoLoaded(true)}
-        crossOrigin="anonymous"
-        referrerPolicy="no-referrer"
-        controlsList="nodownload noremoteplayback"
-        disablePictureInPicture
-        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${isHovered && videoLoaded ? 'opacity-100' : 'opacity-0'} pointer-events-none`}
-      />
+      {/* Video Preview - Only active on hover (desktop) and if not YouTube */}
+      {!isYouTube && (
+        <motion.video 
+          ref={videoRef}
+          src={safeEncodeUrl(videoUrl)} 
+          muted
+          playsInline
+          loop
+          preload="none"
+          onLoadedData={() => setVideoLoaded(true)}
+          crossOrigin="anonymous"
+          referrerPolicy="no-referrer"
+          controlsList="nodownload noremoteplayback"
+          disablePictureInPicture
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${isHovered && videoLoaded ? 'opacity-100' : 'opacity-0'} pointer-events-none`}
+        />
+      )}
       
       {/* Refined Bottom Gradient */}
       <motion.div 
@@ -217,15 +279,28 @@ const VideoCard: React.FC<VideoCardProps> = ({ title, category, videoUrl, poster
 const VideoModal = ({ isOpen, onClose, videoUrl, title }: { isOpen: boolean; onClose: () => void; videoUrl: string; title: string }) => {
   const [isLoading, setIsLoading] = useState(true);
   
-  const driveId = React.useMemo(() => {
+  const embedUrl = React.useMemo(() => {
     if (!videoUrl) return '';
+    
+    // Handle YouTube
+    if (videoUrl.includes('youtube.com') || videoUrl.includes('youtu.be')) {
+      let videoId = '';
+      if (videoUrl.includes('youtu.be/')) {
+        videoId = videoUrl.split('youtu.be/')[1].split(/[?#]/)[0];
+      } else if (videoUrl.includes('v=')) {
+        videoId = videoUrl.split('v=')[1].split(/[?#]/)[0];
+      } else if (videoUrl.includes('embed/')) {
+        videoId = videoUrl.split('embed/')[1].split(/[?#]/)[0];
+      }
+      return `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
+    }
+
+    // Handle Google Drive
     const idMatch = videoUrl.match(/id=([^&]+)/);
     const fileMatch = videoUrl.match(/\/file\/d\/([^/]+)/);
-    return idMatch ? idMatch[1] : (fileMatch ? fileMatch[1] : '');
+    const driveId = idMatch ? idMatch[1] : (fileMatch ? fileMatch[1] : '');
+    return driveId ? `https://drive.google.com/file/d/${driveId}/preview` : videoUrl;
   }, [videoUrl]);
-
-  // Use the preview embed URL which is the most reliable for playback
-  const embedUrl = `https://drive.google.com/file/d/${driveId}/preview`;
 
   useEffect(() => {
     if (isOpen) {
@@ -444,9 +519,9 @@ const Showcase = () => {
         className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 md:mb-16 gap-4 md:gap-8"
       >
         <div className="max-w-xl">
-          <h2 className="text-xl md:text-4xl font-serif italic leading-tight tracking-[0.2em] text-[#fdfbf7]">極致細節</h2>
-          <div className="text-[9px] md:text-[10px] tracking-[0.5em] text-[#8c7851] uppercase font-sans mt-2 mb-6">Exquisite Details</div>
-          <p className="text-[10px] md:text-sm text-zinc-400 leading-relaxed tracking-wide">
+          <h2 className="text-lg md:text-3xl font-serif italic leading-tight tracking-[0.2em] text-[#fdfbf7]">極致細節</h2>
+          <div className="text-[8px] md:text-[9px] tracking-[0.5em] text-[#8c7851] uppercase font-sans mt-1.5 mb-4">Exquisite Details</div>
+          <p className="text-[9px] md:text-xs text-zinc-400 leading-relaxed tracking-wide">
             每一幀畫面都經過頂尖 AI 模型精心生成，<br />
             並由專業藝術家細膩調校，確保細節超越感官認知。
           </p>
@@ -485,11 +560,11 @@ const Services = () => (
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="text-center mb-12 md:mb-20"
+        className="text-center mb-10 md:mb-16"
       >
-        <h2 className="text-xl md:text-4xl font-serif italic leading-tight tracking-[0.2em] text-[#fdfbf7]">專業整合服務</h2>
-        <div className="text-[9px] md:text-[10px] tracking-[0.5em] text-[#8c7851] uppercase font-sans mt-2 mb-6">Our Capabilities</div>
-        <p className="text-[10px] md:text-sm text-zinc-400 max-w-2xl mx-auto tracking-wide">
+        <h2 className="text-lg md:text-3xl font-serif italic leading-tight tracking-[0.2em] text-[#fdfbf7]">專業整合服務</h2>
+        <div className="text-[8px] md:text-[9px] tracking-[0.5em] text-[#8c7851] uppercase font-sans mt-1.5 mb-4">Our Capabilities</div>
+        <p className="text-[9px] md:text-xs text-zinc-400 max-w-2xl mx-auto tracking-wide">
           我們連結想像與製作，<br />
           提供全方位的 AI 影像與品牌視覺解決方案。
         </p>
@@ -577,7 +652,7 @@ const Contact = () => {
     const email = formData.get('email');
     const message = formData.get('message');
     
-    const subject = encodeURIComponent("棠哲影像工作室 - 諮詢郵件");
+    const subject = encodeURIComponent("棠哲攝影｜AI 視覺藝術與商業攝影 - 諮詢郵件");
     const body = encodeURIComponent(`姓名: ${name}\n電子郵件: ${email}\n\n需求內容:\n${message}`);
     
     // Open default mail client
@@ -711,7 +786,7 @@ const Footer = () => (
   <footer className="py-10 md:py-16 border-t border-white/5 px-4 md:px-6 bg-[#121212]">
     <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 md:gap-8">
       <div className="text-[10px] md:text-sm text-zinc-500 text-center md:text-left">
-        © 2026 棠哲影像工作室 TONG ZHE FILM STUDIO. <span className="block md:inline">版權所有 All rights reserved.</span>
+        © 2026 棠哲攝影｜AI 視覺藝術與商業攝影 TONGZHE PHOTOGRAPHER AI VISUAL. <span className="block md:inline">版權所有 All rights reserved.</span>
       </div>
       <div className="flex gap-6 md:gap-8 text-[8px] md:text-[10px] uppercase tracking-widest text-zinc-500">
         <a href="#" className="hover:text-[#8c7851] transition-colors">隱私政策 Privacy</a>
