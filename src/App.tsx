@@ -9,10 +9,10 @@ const Navbar = () => (
       <div className="flex justify-between items-center w-full md:w-auto">
         <div className="flex flex-col">
           <div className="flex items-baseline gap-1">
-            <span className="text-sm md:text-base lg:text-lg font-sans tracking-widest font-bold leading-tight text-white">棠哲攝影</span>
-            <span className="text-[8px] md:text-[10px] lg:text-xs font-sans tracking-widest font-normal opacity-60 leading-tight text-white/80">｜AI 視覺藝術與商業攝影</span>
+            <span className="text-sm md:text-base lg:text-lg font-sans tracking-widest font-bold leading-tight text-white">棠哲影像</span>
+            <span className="text-[8px] md:text-[10px] lg:text-xs font-sans tracking-widest font-normal opacity-60 leading-tight text-white/80">｜AI 視覺藝術與商業影像</span>
           </div>
-          <span className="text-[5px] md:text-[7px] tracking-[0.2em] font-sans font-medium opacity-40 uppercase text-white/50">TongZhe Photographer AI Visual</span>
+          <span className="text-[5px] md:text-[7px] tracking-[0.2em] font-sans font-medium opacity-40 uppercase text-white/50">TongZhe Imaging AI Visual</span>
         </div>
 
         {/* Mobile Inquiry Button - Visible only on mobile */}
@@ -106,7 +106,7 @@ const Hero = () => (
           <div className="text-[7px] sm:text-[9px] md:text-[10px] lg:text-xs mt-3 opacity-100 font-sans not-italic tracking-[0.5em] uppercase text-white font-medium">BEYOND REALITY, INTO THE UNSEEN</div>
         </h1>
         <div className="text-xs sm:text-base md:text-lg lg:text-xl mb-8 font-sans not-italic tracking-[0.2em] text-white/90 font-medium drop-shadow-lg">
-          AI 視覺藝術與商業攝影：為品牌提供超現實視覺方案
+          AI 視覺藝術與商業影像：為品牌提供超現實視覺方案
         </div>
         <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
           <button 
@@ -433,7 +433,7 @@ const Showcase = () => {
     { 
       title: "港區之巔：都會美學", 
       enTitle: "Minato Heights: Urban Aesthetics",
-      category: "建築攝影 / Architecture", 
+      category: "建築影像 / Architecture", 
       image: "https://drive.google.com/thumbnail?id=1B0k2pKjAdylCmZiMkAE4Pdgx_olNWdMQ&sz=w1000",
       video: "https://drive.google.com/uc?id=1B0k2pKjAdylCmZiMkAE4Pdgx_olNWdMQ"
     },
@@ -510,7 +510,7 @@ const Showcase = () => {
     { 
       title: "港區之巔：Ark Hills", 
       enTitle: "Minato Heights: Ark Hills",
-      category: "建築攝影 / Architecture", 
+      category: "建築影像 / Architecture", 
       image: "https://drive.google.com/thumbnail?id=1xbUuuW-CrzOhJYlePfsfql-b2vLIypRd&sz=w1000",
       video: "https://drive.google.com/uc?id=1xbUuuW-CrzOhJYlePfsfql-b2vLIypRd"
     }
@@ -603,8 +603,8 @@ const Services = () => (
           {
             icon: <Camera className="text-white/90" />,
             color: "bg-[#586F7C]", // Slate Blue
-            title: "商業攝影",
-            enTitle: "Commercial Photography",
+            title: "商業影像",
+            enTitle: "Commercial Imaging",
             desc: "精準捕捉產品細節與品牌氣韻，透過光影語彙轉化為具備商業深度的視覺敘事。"
           },
           {
@@ -659,7 +659,7 @@ const Contact = () => {
     const email = formData.get('email');
     const message = formData.get('message');
     
-    const subject = encodeURIComponent("棠哲攝影｜AI 視覺藝術與商業攝影 - 諮詢郵件");
+    const subject = encodeURIComponent("棠哲影像｜AI 視覺藝術與商業影像 - 諮詢郵件");
     const body = encodeURIComponent(`姓名: ${name}\n電子郵件: ${email}\n\n需求內容:\n${message}`);
     
     // Open default mail client
@@ -793,7 +793,7 @@ const Footer = () => (
   <footer className="py-10 md:py-16 border-t border-white/5 px-4 md:px-6 bg-[#121212]">
     <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 md:gap-8">
       <div className="text-[10px] md:text-sm text-zinc-500 text-center md:text-left">
-        © 2026 棠哲攝影｜AI 視覺藝術與商業攝影 TONGZHE PHOTOGRAPHER AI VISUAL. <span className="block md:inline">版權所有 All rights reserved.</span>
+        © 2026 棠哲影像｜AI 視覺藝術與商業影像 TONGZHE IMAGING AI VISUAL. <span className="block md:inline">版權所有 All rights reserved.</span>
       </div>
       <div className="flex gap-6 md:gap-8 text-[8px] md:text-[10px] uppercase tracking-widest text-zinc-500">
         <a href="#" className="hover:text-[#8c7851] transition-colors">隱私政策 Privacy</a>
