@@ -403,6 +403,13 @@ const Showcase = () => {
 
   const portfolioItems = [
     { 
+      title: "DIOR：極致奢華保養", 
+      enTitle: "DIOR: Ultimate Luxury Skincare",
+      category: "美妝保養 / Beauty", 
+      image: "https://drive.google.com/thumbnail?id=1sYWPSjs-iU5nHxWjXf-UCe19d7JrUSnr&sz=w1000",
+      video: "https://drive.google.com/uc?id=1ouGVLN3gzde5W1MUWo00mVRSx8vM3r4V"
+    },
+    { 
       title: "幻夢之境：日劇片頭", 
       enTitle: "The Ethereal Realm: Opening",
       category: "AI 概念 / AI Concept", 
@@ -420,7 +427,7 @@ const Showcase = () => {
       title: "QBH 玻尿酸：自然植萃", 
       enTitle: "QBH Hyaluronic: Nature",
       category: "美妝保養 / Beauty", 
-      image: "https://drive.google.com/thumbnail?id=17f1VYUSaRGnn7SunBqqvlG4ovfRomdBs&sz=w1000",
+      image: "https://drive.google.com/thumbnail?id=1c9ltT58DpmDS7DOpJJR-8aycCHQ4hELS&sz=w1000",
       video: "https://drive.google.com/uc?id=17f1VYUSaRGnn7SunBqqvlG4ovfRomdBs"
     },
     { 
@@ -434,7 +441,7 @@ const Showcase = () => {
       title: "QBH：柔順護髮", 
       enTitle: "QBH: Haircare",
       category: "美妝保養 / Beauty", 
-      image: "https://drive.google.com/thumbnail?id=1s1Xm_cCDmFNi_FypX9-S7-didtqTzdgx&sz=w1000",
+      image: "https://drive.google.com/thumbnail?id=177nUDi2QG4ExK13mk3SzkZm1QuV4dpHm&sz=w1000",
       video: "https://drive.google.com/uc?id=1s1Xm_cCDmFNi_FypX9-S7-didtqTzdgx"
     },
     { 
